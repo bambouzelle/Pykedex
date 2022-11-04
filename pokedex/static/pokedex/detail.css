@@ -1,0 +1,10 @@
+.title {
+    font-style: italic;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+    border: 1px, solid;
+}
