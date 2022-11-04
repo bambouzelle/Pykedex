@@ -1,0 +1,56 @@
+.pokePartieHaute{
+    background-color:#f24726;
+    height:70%;
+}
+.imagePokePartieHaute{
+    display:block;
+    max-height:6em;
+    height:100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.pokePartieMilieu{
+    background-color:#1a1a1a;
+    height:10%;
+    text-align: center;
+}
+.pokePartieBas{
+    background-color:#ffffff;
+    height:10%;
+}
+
+.cerclePokeNoir{
+    position: absolute;
+    left: 49%;
+    top: 100px;
+    background-color:#1a1a1a;
+    width:30px;
+    z-index:20;
+    height:50px;
+    width:50px;
+    border-radius: 50px;
+    animation: 10s animationpokeballnoir;
+    animation-iteration-count: infinite;
+}
+.cerclePokeBlanc{
+    position: absolute;
+    left: 49.5%;
+    top: 107.5px;
+    background-color:#ffffff;
+    width:30px;
+    z-index:21;
+    height:35px;
+    width:35px;
+    border-radius: 50px;
+    animation: 10s animationpokeballblanc;
+    animation-iteration-count: infinite;
+}
+@keyframes animationpokeballblanc{
+    0%{ background-color:#ffffff; left: 0.5%}
+    50%{ background-color:#FFFF9B;}
+    100%{ background-color:#ffffff; left: 99.5%}
+}
+@keyframes animationpokeballnoir{
+    0%{ left: 0%}
+    100%{ left: 99%}
+}
