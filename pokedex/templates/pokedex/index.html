@@ -2,6 +2,38 @@
 
 {% include "pokedex/header.html" %}
 
+{% if pokemon_list %} {% for pokemon in pokemon_list %}
+{% if pokemon.pokemon_id % 2 == 0}
+<div class="row">
+  <div class="col-sm-6">
+      <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.pokemon_id}}.png" alt="">
+      <div class="card-body">
+        <h5 class="card-title">Special title treatment</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+    {% endif %}
+    {% if pokemon.pokemon_id % 2 == 1}
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Special title treatment</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endfor %}
+{% else %}
+    <p>No pokemon are available.</p>
+{% endif %}
+
+
 <div class="container">
     <ul>
         {% if pokemon_list %} {% for pokemon in pokemon_list %}
@@ -13,6 +45,13 @@
                     </div>
                     <div class="col">
                         <h3>{{pokemon.name}}</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                    </div>
+                    <div class="col">
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.pokemon_id}}.png" alt="">
                     </div>
                 </div>
                 <div class="row">
