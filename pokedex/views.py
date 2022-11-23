@@ -3,18 +3,24 @@ import requests
 from django.http import HttpResponse
 
 
-def index(request):
-    offset = 0
+def index(request, page=0):
+    if page==0:
+      offset = 0
+      previous = 0
+    else:
+      offset = page*20
     limit = 20
     url_api = 'https://pokeapi.co/api/v2/pokemon?offset={}&limit={}'.format(offset,limit)
     response = requests.get(url_api)
     results = response.json()['results']
     data = []
+    next = page + 1
+    previous = page - 1
     for pokemon in results:
       print(pokemon)
       pokemon_id = pokemon['url'].split('/')[-2]
       data.append({'name': pokemon['name'], 'pokemon_id':pokemon_id})
-    context = {'pokemon_list': data }
+    context = {'pokemon_list': data , 'previous': previous , 'next' :next}
     return render(request, 'pokedex/index.html', context)
     
 def detail(request, pokemon_id):
@@ -22,6 +28,8 @@ def detail(request, pokemon_id):
     response = requests.get(url_api)
     all_data = response.json()
     types = []
+    previous_id = pokemon_id -1
+    next_id = pokemon_id +1
     for type in all_data['types']:
       types.append(type['type']['name'])
     data={
@@ -35,6 +43,8 @@ def detail(request, pokemon_id):
       'sprite_default_back':all_data['sprites']['back_default'],
       'sprite_shiny_front':all_data['sprites']['front_shiny'],
       'sprite_shiny_back':all_data['sprites']['back_shiny'],
+      'previous_id': previous_id,
+      'next_id': next_id
     }
     print(response.json()['name'])
     return render(request, 'pokedex/detail.html', context=data)
