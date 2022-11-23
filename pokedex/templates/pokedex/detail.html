@@ -14,9 +14,72 @@
         </div>
     </div>
     <div class="row">
+        <div class="col">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h3 class="subtitle">Default</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <img class='sprite' src='{{sprite_default_front}}' />
+                    </div>
+                    <div class="col">
+                        <img class='sprite' src='{{sprite_default_back}}' />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h3 class="subtitle">Shiny</h3>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col">
+                        <img class='sprite' src='{{sprite_shiny_front}}' />
+                    </div>
+                    <div class="col">
+                        <img class='sprite' src='{{sprite_shiny_back}}' />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:4em;">
         <table>
             <tr>
-                <th>ID</th>
+                <th>ID</th> 
+                <th>Weight</th>
+                <th>Height</th>
+                <th>Base experience</th>
+                <th>Types</th>
+            </tr>
+            <tr>
+                <td>{{id}}</td>
+                <td>{{weight}}</td>
+                <td>{{height}}</td>
+                <td>{{base_experience}}</td>
+                <td>
+                    {% for type in types %}
+                    <div>
+                        {{type}}
+                    </div>
+                    {% endfor %}
+
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="row" style="margin-top:4em;">
+        <table>
+            <tr>
+                <th>ID</th> 
                 <th>Weight</th>
                 <th>Height</th>
                 <th>Base experience</th>
