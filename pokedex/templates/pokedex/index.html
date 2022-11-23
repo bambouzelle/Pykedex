@@ -11,7 +11,7 @@
           <img class="card-img-top" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.pokemon_id}}.png" alt="">
           <div class="card-body">
             <h5 class="card-title">{{pokemon.pokemon_id}} : {{pokemon.name}}</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <p class="card-text">Types :  </p>
             <a href="/pokedex/{{pokemon.pokemon_id}}/" class="btn btn-primary">Details</a>
           </div>
         </div>
@@ -23,12 +23,13 @@
             <img class="card-img-top" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.pokemon_id}}.png" alt="">
           <div class="card-body">
             <h5 class="card-title">{{pokemon.pokemon_id}} : {{pokemon.name}}</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <p class="card-text">Types : </p>
             <a href="/pokedex/{{pokemon.pokemon_id}}/" class="btn btn-primary">Details</a>
           </div>
         </div>
       </div>
     </div>
+<br>
     {% endif %}
 {% endfor %}
 {% else %}
