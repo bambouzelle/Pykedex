@@ -2,33 +2,39 @@
 
 {% include "pokedex/header.html" %}
 
-<div class="container">
-    <ul>
-        {% if pokemon_list %} {% for pokemon in pokemon_list %}
-        <li>
-            <div class='card'>
-                <div class='row'>
-                    <div class="col">
-                        <p>ID : {{pokemon.pokemon_id}}</p>
-                    </div>
-                    <div class="col">
-                        <h3>{{pokemon.name}}</h3>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-auto">
-                        <button>
-                        <a href="/pokedex/{{pokemon.pokemon_id}}/">Details</a>
-                      </button>
-                    </div>
-                </div>
-
-            </div>
-        </li>
-        {% endfor %}
-    </ul>
-    {% else %}
-    <p>No pokemon are available.</p>
+{% if pokemon_list %}
+{% for pokemon in pokemon_list %}
+    {% if pokemon.pokemon_id|divisibleby:2 == 0 %}
+    <div class="d-flex justify-content-center" style="flex-direction:center">
+    <div class="row">
+      <div class="col-sm-6">
+          <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.pokemon_id}}.png" alt="">
+          <div class="card-body">
+            <h5 class="card-title">{{pokemon.pokemon_id}} : {{pokemon.name}}</h5>
+            <p class="card-text"></p>
+            <a href="/pokedex/{{pokemon.pokemon_id}}/" class="btn btn-primary">Details</a>
+          </div>
+        </div>
+      </div>
+        {% endif %}
+        {% if pokemon.pokemon_id|divisibleby:2 == 1 %}
+      <div class="col-sm-6">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.pokemon_id}}.png" alt="">
+          <div class="card-body">
+            <h5 class="card-title">{{pokemon.pokemon_id}} : {{pokemon.name}}</h5>
+            <p class="card-text"></p>
+            <a href="/pokedex/{{pokemon.pokemon_id}}/" class="btn btn-primary">Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+        </div>
+<br>
     {% endif %}
+{% endfor %}
+{% else %}
+<p>No pokemon are available.</p>
+{% endif %}
 
-</div>
