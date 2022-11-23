@@ -1,40 +1,56 @@
-<link rel="stylesheet" href="../static/pokedex/index.css">
+<link rel="stylesheet" href="../static/pokedex/index.css"> {% include "pokedex/header.html" %}
 
-{% include "pokedex/header.html" %}
-
-{% if pokemon_list %}
-{% for pokemon in pokemon_list %}
-    {% if pokemon.pokemon_id|divisibleby:2 == 0 %}
-    <div class="d-flex justify-content-center" style="flex-direction:center">
-    <div class="row">
-      <div class="col-sm-6">
-          <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.pokemon_id}}.png" alt="">
-          <div class="card-body">
-            <h5 class="card-title">{{pokemon.pokemon_id}} : {{pokemon.name}}</h5>
-            <p class="card-text"></p>
-            <a href="/pokedex/{{pokemon.pokemon_id}}/" class="btn btn-primary">Details</a>
-          </div>
-        </div>
-      </div>
-        {% endif %}
-        {% if pokemon.pokemon_id|divisibleby:2 == 1 %}
-      <div class="col-sm-6">
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.pokemon_id}}.png" alt="">
-          <div class="card-body">
-            <h5 class="card-title">{{pokemon.pokemon_id}} : {{pokemon.name}}</h5>
-            <p class="card-text"></p>
-            <a href="/pokedex/{{pokemon.pokemon_id}}/" class="btn btn-primary">Details</a>
-          </div>
-        </div>
-      </div>
+<div class="row mb-5">
+    <div class="col text-right ">
+        {% if previous > -1 %}
+        <a href="/{{previous}}" class="btn btn-primary">Previous</a> {% endif %}
     </div>
+
+    <div class="col">
+        <a href="/{{next}}" class="btn btn-primary">Next</a>
+    </div>
+</div>
+
+
+{% if pokemon_list %} {% for pokemon in pokemon_list %} {% if pokemon.pokemon_id|divisibleby:2 == 0 %}
+<div class="d-flex justify-content-center" style="flex-direction:center">
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.pokemon_id}}.png" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">{{pokemon.pokemon_id}} : {{pokemon.name}}</h5>
+                    <p class="card-text"></p>
+                    <a href="/pokedex/{{pokemon.pokemon_id}}/" class="btn btn-primary">Details</a>
+                </div>
+            </div>
         </div>
-<br>
-    {% endif %}
-{% endfor %}
-{% else %}
+        {% endif %} {% if pokemon.pokemon_id|divisibleby:2 == 1 %}
+        <div class="col-sm-6">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.pokemon_id}}.png" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">{{pokemon.pokemon_id}} : {{pokemon.name}}</h5>
+                    <p class="card-text"></p>
+                    <a href="/pokedex/{{pokemon.pokemon_id}}/" class="btn btn-primary">Details</a>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<br> {% endif %} {% endfor %} {% else %}
 <p>No pokemon are available.</p>
 {% endif %}
+<div class="row">
+    <div class="col text-right ">
+        {% if previous > -1 %}
+        <a href="/{{previous}}" class="btn btn-primary">Previous</a> {% endif %}
+    </div>
 
+    <div class="col">
+        <a href="/{{next}}" class="btn btn-primary">Next</a>
+    </div>
+</div>

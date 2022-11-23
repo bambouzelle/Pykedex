@@ -8,3 +8,15 @@ table {
     text-align: center;
     border: 1px, solid;
 }
+
+.sprite {
+    height: 150%;
+}
+
+.adapter {
+    height: 500px;
+}
+
+.subtitle {
+    margin-bottom: -2em;
+}

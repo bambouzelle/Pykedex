@@ -1,5 +1,4 @@
-{% include "pokedex/header.html" %}
-{% load static %}
+{% include "pokedex/header.html" %} {% load static %}
 
 
 <link rel="stylesheet" href="{% static 'pokedex/detail.css' %}">
@@ -14,6 +13,42 @@
         </div>
     </div>
     <div class="row">
+        <div class="col">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h3 class="subtitle">Default</h3>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:4em;">
+                    <div class="col">
+                        <img class='sprite' src='{{sprite_default_front}}' />
+                    </div>
+                    <div class="col">
+                        <img class='sprite' src='{{sprite_default_back}}' />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h3 class="subtitle">Shiny</h3>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:4em;">
+                    <div class="col">
+                        <img class='sprite' src='{{sprite_shiny_front}}' />
+                    </div>
+                    <div class="col">
+                        <img class='sprite' src='{{sprite_shiny_back}}' />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:4em;">
         <table>
             <tr>
                 <th>ID</th>
@@ -37,5 +72,49 @@
                 </td>
             </tr>
         </table>
+    </div>
+
+    <div class="row" style="margin-top:4em;">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Weight</th>
+                <th>Height</th>
+                <th>Base experience</th>
+                <th>Types</th>
+            </tr>
+            <tr>
+                <td>{{id}}</td>
+                <td>{{weight}}</td>
+                <td>{{height}}</td>
+                <td>{{base_experience}}</td>
+                <td>
+                    {% for type in types %}
+                    <div>
+                        {{type}}
+                    </div>
+                    {% endfor %}
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="container">
+        <div class="row">
+            {% if previous_id > 0%}
+            <div class="col text-right" style="margin-top:4em;">
+                <a href="/pokedex/{{previous_id}}/" class="btn btn-primary">Previous</a>
+            </div>
+            {% endif %}
+            <div class="col" style="margin-top:4em;">
+                <a href="/pokedex/{{next_id}}/" class="btn btn-primary">Next</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col text-center" style="margin-top:4em;">
+            <a href="/" class="btn btn-primary">Return to Pykedex</a>
+        </div>
     </div>
 </div>
