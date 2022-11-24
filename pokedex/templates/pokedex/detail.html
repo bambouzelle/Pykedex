@@ -31,13 +31,13 @@
             </div>
         </div>
         <div class="col">
-            <div class="container">
+            <div class="container" style="border-left : 2px solid black;">
                 <div class="row">
                     <div class="col">
                         <h3 class="subtitle">Shiny</h3>
                     </div>
                 </div>
-                <div class="row" style="margin-top:4em;">
+                <div class="row" style="margin-top:4em;padding : 0px 0px 100px 20px">
                     <div class="col">
                         <img class='sprite' src='{{sprite_shiny_front}}' />
                     </div>
@@ -48,21 +48,21 @@
             </div>
         </div>
     </div>
-    <div class="row" style="margin-top:4em;">
+    <div class="row" style="border-top : 2px solid black;">
         <table>
             <tr>
-                <th>ID</th>
-                <th>Weight</th>
-                <th>Height</th>
-                <th>Base experience</th>
-                <th>Types</th>
+                <th class="caseGaucheTableauStat">ID</th>
+                <th class="caseTableauStat">Weight</th>
+                <th class="caseTableauStat">Height</th>
+                <th class="caseTableauStat">Base experience</th>
+                <th class="caseTableauStat">Types</th>
             </tr>
             <tr>
-                <td>{{id}}</td>
-                <td>{{weight}}</td>
-                <td>{{height}}</td>
-                <td>{{base_experience}}</td>
-                <td>
+                <td class="caseGaucheTableauStat">{{id}}</td>
+                <td class="caseTableauStat">{{weight}}</td>
+                <td class="caseTableauStat">{{height}}</td>
+                <td class="caseTableauStat">{{base_experience}}</td>
+                <td class="caseTableauStat">
                     {% for type in types %}
                     <div>
                         {{type}}
@@ -74,31 +74,6 @@
         </table>
     </div>
 
-    <div class="row" style="margin-top:4em;">
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>Weight</th>
-                <th>Height</th>
-                <th>Base experience</th>
-                <th>Types</th>
-            </tr>
-            <tr>
-                <td>{{id}}</td>
-                <td>{{weight}}</td>
-                <td>{{height}}</td>
-                <td>{{base_experience}}</td>
-                <td>
-                    {% for type in types %}
-                    <div>
-                        {{type}}
-                    </div>
-                    {% endfor %}
-
-                </td>
-            </tr>
-        </table>
-    </div>
     <div class="container">
         <div class="row">
             {% if previous_id > 0%}

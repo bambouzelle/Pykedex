@@ -20,3 +20,12 @@ table {
 .subtitle {
     margin-bottom: -2em;
 }
+
+.caseGaucheTableauStat{
+border-left : 2px solid black;
+border-right : 2px solid black;
+}
+
+.caseTableauStat{
+border-right : 2px solid black;
+}
