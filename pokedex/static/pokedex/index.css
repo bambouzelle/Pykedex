@@ -35,7 +35,9 @@ li {
 .card:hover {
     bottom: 5px;
     right: 5px;
-     box-shadow: 10px 5px 11px rgba(242,71,38, .2) /*rgba(33,33,33,.2)*/;
+    {% if 1 == 1 %}
+    box-shadow: 10px 5px 11px rgba(242,71,38, .2) /*rgba(33,33,33,.2)*/;
+    {% endif %}
 }
 
 .card {
