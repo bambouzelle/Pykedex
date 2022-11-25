@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="../static/pokedex/index.css"> {% include "pokedex/header.html" %}
+<link rel="stylesheet" href="../static/pokedex/index.css"> {% include "pokedex/header.html" %}{% include "pokedex/searchbar.html" %}
 
 <div class="row mb-5">
     <div class="col text-right ">
@@ -7,7 +7,8 @@
     </div>
 
     <div class="col">
-        <a href="/{{next}}" class="btn btn-primary">Next</a>
+        {% if next > 0 %}
+        <a href="/{{next}}" class="btn btn-primary">Next</a>{% endif %}
     </div>
 </div>
 
@@ -41,7 +42,12 @@
     </div>
 </div>
 <br> {% endif %} {% endfor %} {% else %}
-<p>No pokemon are available.</p>
+<div class="row">
+    <div class='col text-center'>
+        <p>No pokemon are available or your search length is too small.</p>
+    </div>
+</div>
+
 {% endif %}
 <div class="row">
     <div class="col text-right ">
@@ -50,6 +56,14 @@
     </div>
 
     <div class="col">
-        <a href="/{{next}}" class="btn btn-primary">Next</a>
+        {% if next > 0 %}
+        <a href="/{{next}}" class="btn btn-primary">Next</a>{% endif %}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col text-center ">
+        {% if search == 1 %}
+        <a href="/" class="btn btn-primary">Return to home</a> {% endif %}
     </div>
 </div>
