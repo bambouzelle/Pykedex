@@ -15,7 +15,6 @@ def index(request, page=0):
     if (request.GET.get('search')):
       name = request.GET.get('search')
       
-      
       #Retour lorsque recherche trop courte
       if len(name) == 1:
         previous = -1
