@@ -14,7 +14,6 @@
 
 • Réaliser un `git clone https://github.com/bambouzelle/Pykedex.git` dans le dossier de votre choix
 
-• Depuis ce dossier réalisez la commande ` install requests package `
 
 ### Démarrage
 
