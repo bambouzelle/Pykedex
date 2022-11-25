@@ -29,7 +29,7 @@
     height:50px;
     width:50px;
     border-radius: 50px;
-    animation: 10s animationpokeballnoir;
+    animation: 10s animationpokeballnoir linear;
     animation-iteration-count: infinite;
 }
 .cerclePokeBlanc{
@@ -42,15 +42,15 @@
     height:35px;
     width:35px;
     border-radius: 50px;
-    animation: 10s animationpokeballblanc;
+    animation: 10s animationpokeballblanc linear;
     animation-iteration-count: infinite;
 }
 @keyframes animationpokeballblanc{
     0%{ background-color:#ffffff; left: 0.5%}
     50%{ background-color:#FFFF9B;}
-    100%{ background-color:#ffffff; left: 99.5%}
+    100%{ background-color:#ffffff; left: 98.5%}
 }
 @keyframes animationpokeballnoir{
     0%{ left: 0%}
-    100%{ left: 99%}
+    100%{ left: 98%}
 }

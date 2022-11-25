@@ -12,12 +12,11 @@
     </div>
 </div>
 
-
-{% if pokemon_list %} {% for pokemon in pokemon_list %} {% if pokemon.pokemon_id|divisibleby:2 == 0 %}
+{% if pokemon_list %} {% for pokemon in pokemon_list %} {% if pokemon.index|divisibleby:2 == 0 %}
 <div class="d-flex justify-content-center" style="flex-direction:center">
 
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-6 box">
             <div class="card" style="width: 18rem;">
                 <img class="card-img-top" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.pokemon_id}}.png" alt="">
                 <div class="card-body">
@@ -27,7 +26,7 @@
                 </div>
             </div>
         </div>
-        {% endif %} {% if pokemon.pokemon_id|divisibleby:2 == 1 %}
+        {% endif %} {% if pokemon.index|divisibleby:2 == 1 %}
         <div class="col-sm-6">
             <div class="card" style="width: 18rem;">
                 <img class="card-img-top" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.pokemon_id}}.png" alt="">

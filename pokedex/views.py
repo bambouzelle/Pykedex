@@ -10,7 +10,7 @@ def index(request, page=0):
     else:
       offset = page*20
     limit = 20
-
+    i = 0
     #Vérifie s'il y a une recherche
     if (request.GET.get('search')):
       name = request.GET.get('search')
@@ -28,12 +28,14 @@ def index(request, page=0):
       name_list = get_name_searched_list(name)
       all_results = []
       for name in name_list:
+        i+=1
         url_api = 'https://pokeapi.co/api/v2/pokemon/{}'.format(name)
         response = requests.get(url_api)
         all_data = response.json()
         pokemon_data={
         'pokemon_id': all_data['id'],
         'name': all_data['name'],
+        'index':i
         }
         all_results.append(pokemon_data)
       data = all_results
@@ -51,9 +53,10 @@ def index(request, page=0):
       previous = page - 1
       is_search = 0
       for pokemon in results:
+        i+=1
         print(pokemon)
         pokemon_id = pokemon['url'].split('/')[-2]
-        data.append({'name': pokemon['name'], 'pokemon_id':pokemon_id})
+        data.append({'name': pokemon['name'], 'pokemon_id':pokemon_id, 'index':i})
     context = {'pokemon_list': data , 'previous': previous , 'next' :next, 'search':is_search}
     return render(request, 'pokedex/index.html', context)
     
