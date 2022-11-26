@@ -17,11 +17,11 @@
 
     <div class="row">
         <div class="col-sm-6 box">
-            <div class="card" style="width: 18rem;">
+            <div class="card {{pokemon.type}}" style="width: 18rem;">
                 <img class="card-img-top" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.pokemon_id}}.png" alt="">
                 <div class="card-body">
                     <h5 class="card-title">{{pokemon.pokemon_id}} : {{pokemon.name}}</h5>
-                    <p class="card-text"></p>
+                    <p class="card-text"> Type principal : {{pokemon.type}} </p>
                     <a href="/pokedex/{{pokemon.pokemon_id}}/" class="btn btn-primary">Details</a>{% if teams%}
                     <form action="#" method="get">
                         <select name="teams" id="team-select">
@@ -40,11 +40,11 @@
         </div>
         {% endif %} {% if pokemon.index|divisibleby:2 == 1 %}
         <div class="col-sm-6">
-            <div class="card" style="width: 18rem;">
+            <div class="card {{pokemon.type}}" style="width: 18rem;">
                 <img class="card-img-top" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.pokemon_id}}.png" alt="">
-                <div class="card-body">
+                <div class="card-body" style="text-align:center;text-transform: uppercase; ">
                     <h5 class="card-title">{{pokemon.pokemon_id}} : {{pokemon.name}}</h5>
-                    <p class="card-text"></p>
+                    <p class="card-text"> Type principal : {{pokemon.type}} </p>
                     <a href="/pokedex/{{pokemon.pokemon_id}}/" class="btn btn-primary">Details</a> {% if teams%}
                     <form action="#" method="get">
                         <select name="teams" id="team-select">

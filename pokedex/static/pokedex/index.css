@@ -32,10 +32,101 @@ li {
     border-radius: inherit;
 }
 
-.card:hover {
+.couleur:hover {
     bottom: 5px;
     right: 5px;
-    box-shadow: 10px 5px 11px rgba(33, 33, 33, .2);
+    box-shadow: 10px 5px 11px rgba(242,71,38, .2) /*rgba(33,33,33,.2)*/;
+}
+.normal:hover {
+    bottom: 5px;
+    right: 5px;
+    box-shadow: 10px 5px 11px rgba(168,168,120, .2) /*rgba(33,33,33,.2)*/;
+}
+.fire:hover{
+    bottom: 5px;
+    right: 5px;
+    box-shadow: 10px 5px 11px rgba(240,128,48, .2) /*rgba(33,33,33,.2)*/;
+}
+.water:hover{
+    bottom: 5px;
+    right: 5px;
+    box-shadow: 10px 5px 11px rgba(104,144,240, .2) /*rgba(33,33,33,.2)*/;
+}
+.grass:hover{
+    bottom: 5px;
+    right: 5px;
+    box-shadow: 10px 5px 11px rgba(120,200,80, .2) /*rgba(33,33,33,.2)*/;
+}
+
+.electric:hover{
+    bottom: 5px;
+    right: 5px;
+    box-shadow: 10px 5px 11px rgba(248,208,48, .2) /*rgba(33,33,33,.2)*/;
+}
+.ice:hover{
+    bottom: 5px;
+    right: 5px;
+    box-shadow: 10px 5px 11px rgba(152,216,216, .2) /*rgba(33,33,33,.2)*/;
+}
+.fighting:hover{
+    bottom: 5px;
+    right: 5px;
+    box-shadow: 10px 5px 11px rgba(192,48,40, .2) /*rgba(33,33,33,.2)*/;
+}
+.poison:hover{
+    bottom: 5px;
+    right: 5px;
+    box-shadow: 10px 5px 11px rgba(160,64,160, .2) /*rgba(33,33,33,.2)*/;
+}
+.ground:hover{
+    bottom: 5px;
+    right: 5px;
+    box-shadow: 10px 5px 11px rgba(160,64,160, .2) /*rgba(33,33,33,.2)*/;
+}
+.flying:hover{
+    bottom: 5px;
+    right: 5px;
+    box-shadow: 10px 5px 11px rgba(168,144,240, .2) /*rgba(33,33,33,.2)*/;
+}
+.psychic:hover{
+    bottom: 5px;
+    right: 5px;
+    box-shadow: 10px 5px 11px rgba(248,88,136, .2) /*rgba(33,33,33,.2)*/;
+}
+.bug:hover{
+    bottom: 5px;
+    right: 5px;
+    box-shadow: 10px 5px 11px rgba(168,184,32, .2) /*rgba(33,33,33,.2)*/;
+}
+.rock:hover{
+    bottom: 5px;
+    right: 5px;
+    box-shadow: 10px 5px 11px rgba(184,160,56, .2) /*rgba(33,33,33,.2)*/;
+}
+.ghost:hover{
+    bottom: 5px;
+    right: 5px;
+    box-shadow: 10px 5px 11px rgba(112,88,152, .2) /*rgba(33,33,33,.2)*/;
+}
+.dark:hover{
+    bottom: 5px;
+    right: 5px;
+    box-shadow: 10px 5px 11px rgba(112,88,72, .2) /*rgba(33,33,33,.2)*/;
+}
+.dragon:hover{
+    bottom: 5px;
+    right: 5px;
+    box-shadow: 10px 5px 11px rgba(112,56,248, .2) /*rgba(33,33,33,.2)*/;
+}
+.steel:hover{
+    bottom: 5px;
+    right: 5px;
+    box-shadow: 10px 5px 11px rgba(184,184,208, .2) /*rgba(33,33,33,.2)*/;
+}
+.fairy:hover{
+    bottom: 5px;
+    right: 5px;
+    box-shadow: 10px 5px 11px rgba(240,182,188, .2) /*rgba(33,33,33,.2)*/;
 }
 
 .card {

@@ -63,7 +63,11 @@ def index(request, page=0):
         i+=1
         print(pokemon)
         pokemon_id = pokemon['url'].split('/')[-2]
-        data.append({'name': pokemon['name'], 'pokemon_id':pokemon_id, 'index':i})
+        url_api_poke = 'https://pokeapi.co/api/v2/pokemon/{}/'.format(str(pokemon_id))
+        response_poke = requests.get(url_api_poke)
+        all_data_poke = response_poke.json()
+        type_poke = all_data_poke["types"][0]["type"]["name"]
+        data.append({'name': pokemon['name'], 'pokemon_id':pokemon_id, 'index':i, 'type': type_poke})
     context = {'pokemon_list': data , 'previous': previous , 'next' :next, 'search':is_search, 'teams':teams_list}
     return render(request, 'pokedex/index.html', context)
     
