@@ -1,6 +1,7 @@
 from django.shortcuts import render
 import requests
 from django.http import HttpResponse
+import csv
 
 
 def index(request, page=0):
@@ -11,6 +12,7 @@ def index(request, page=0):
       offset = page*20
     limit = 20
     i = 0
+    
     #Vérifie s'il y a une recherche
     if (request.GET.get('search')):
       name = request.GET.get('search')
@@ -21,7 +23,7 @@ def index(request, page=0):
         next = 0
         data = {}
         is_search = -1
-        context = {'pokemon_list': data , 'previous': previous , 'next' :next, 'search':is_search}
+        context = {'pokemon_list': data , 'previous': previous , 'next' :next, 'search':is_search, 'teams':teams_list}
         return render(request, 'pokedex/index.html', context)
       
       
@@ -35,7 +37,8 @@ def index(request, page=0):
         pokemon_data={
         'pokemon_id': all_data['id'],
         'name': all_data['name'],
-        'index':i
+        'index':i,
+        'teams':teams_list
         }
         all_results.append(pokemon_data)
       data = all_results
@@ -57,7 +60,7 @@ def index(request, page=0):
         print(pokemon)
         pokemon_id = pokemon['url'].split('/')[-2]
         data.append({'name': pokemon['name'], 'pokemon_id':pokemon_id, 'index':i})
-    context = {'pokemon_list': data , 'previous': previous , 'next' :next, 'search':is_search}
+    context = {'pokemon_list': data , 'previous': previous , 'next' :next, 'search':is_search, 'teams':teams_list}
     return render(request, 'pokedex/index.html', context)
     
 def detail(request, pokemon_id):
@@ -81,11 +84,46 @@ def detail(request, pokemon_id):
       'sprite_shiny_front':all_data['sprites']['front_shiny'],
       'sprite_shiny_back':all_data['sprites']['back_shiny'],
       'previous_id': previous_id,
-      'next_id': next_id
+      'next_id': next_id,
+      'teams':teams_list
     }
     print(response.json()['name'])
     return render(request, 'pokedex/detail.html', context=data)
 
+
+def teams(request):
+  '''Affiche la page teams'''
+  if(request.GET.get('submitNewTeam')):
+    name= str(request.GET.get('teamName'))
+    create_team(name)
+  if(request.GET.get('deleteTeam')):
+    name= str(request.GET.get('delTeamName'))
+    delete_team(name)
+  context = {'teams': teams_list}
+  return render(request, 'pokedex/teams.html', context)
+ 
+def add_to_team():
+  pass
+
+def create_team(name):
+  teams_list.append({'name':name, 'pokemons':[{'id_team':1, 'pokemon_id':'', 'name':'', 'types':''},
+                                              {'id_team':2, 'pokemon_id':'', 'name':'', 'types':''},
+                                              {'id_team':3, 'pokemon_id':'', 'name':'', 'types':''},
+                                              {'id_team':4, 'pokemon_id':'', 'name':'', 'types':''},
+                                              {'id_team':5, 'pokemon_id':'', 'name':'', 'types':''},
+                                              {'id_team':6, 'pokemon_id':'',' name':'', 'types':''}]})
+
+def delete_team(name):
+  print(name)
+  i=0
+  team_index =0
+  for team in teams_list:
+    if team['name']==name:
+      team_index = i
+    i+=1
+  teams_list.pop(team_index)
+
+teams_list = list()
 names = dict(A=
     ['Abomasnow',
     'Abra',

@@ -34,6 +34,15 @@
                     <h5 class="card-title">{{pokemon.pokemon_id}} : {{pokemon.name}}</h5>
                     <p class="card-text"></p>
                     <a href="/pokedex/{{pokemon.pokemon_id}}/" class="btn btn-primary">Details</a>
+                    <form action="#" method="get">
+                        <select name="teams" id="team-select">
+                            <option value="">Create new team</option>
+                            {% for team in teams %}
+                            <option value="{{team.name}}">{{team.name}}</option>
+                            {% endfor %} 
+                        </select>
+                        <input type="submit" class="btn btn-primary" value="Add to team" name="submitToTeam">
+                    </form>
                 </div>
             </div>
         </div>
