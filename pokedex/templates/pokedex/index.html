@@ -29,7 +29,7 @@
                             <option value={{team.name}}>{{team.name}}</option>
                             {% endfor %} 
                             <input type="hidden" value={{pokemon.pokemon_id}} name="pok_id">
-                            
+                            <input type="hidden" value={{pokemon.name}} name="pok_name">
                         </select>
                         <input type="submit" class="btn btn-primary" value="Add to team" name="submitToTeam">
                     </form>
@@ -52,7 +52,7 @@
                             <option value={{team.name}}>{{team.name}}</option>
                             {% endfor %} 
                             <input type="hidden" value={{pokemon.pokemon_id}} name="pok_id">
-                
+                            <input type="hidden" value={{pokemon.name}} name="pok_name">
                         </select>
                         <input type="submit" class="btn btn-primary" value="Add to team" name="submitToTeam">
                     </form>

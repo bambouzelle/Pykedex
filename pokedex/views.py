@@ -15,7 +15,8 @@ def index(request, page=0):
     if (request.GET.get('submitToTeam')):
       team_name = request.GET.get('teams')
       pok_id = request.GET.get('pok_id')
-      add_to_team(team_name, pok_id)
+      pok_name = request.GET.get('pok_name')
+      add_to_team(team_name, pok_id, pok_name)
       
     #Vérifie s'il y a une recherche et génére le retour de la recherche
     if (request.GET.get('search')):
@@ -68,6 +69,14 @@ def index(request, page=0):
     
 def detail(request, pokemon_id):
     '''Génére le rendu de la page Details'''
+    
+     #Vérifie s'il y a un ajout a l'équipe
+    if (request.GET.get('submitToTeam')):
+      team_name = request.GET.get('teams')
+      pok_id = request.GET.get('pok_id')
+      pok_name = request.GET.get('pok_name')
+      add_to_team(team_name, pok_id, pok_name)
+      
     url_api ='https://pokeapi.co/api/v2/pokemon/{}/'.format(str(pokemon_id))
     response = requests.get(url_api)
     all_data = response.json()
@@ -97,27 +106,33 @@ def detail(request, pokemon_id):
 
 def teams(request):
   '''Affiche la page teams'''
+  #Vérifie si création d'une nouvelle équipe
   if(request.GET.get('submitNewTeam')):
     name= str(request.GET.get('teamName'))
     create_team(name)
+  
+  #Vérifie si suppression d'équipe
   if(request.GET.get('deleteTeam')):
     name= str(request.GET.get('delTeamName'))
     delete_team(name)
+  
+  #Vérifie si suppression de pokémon
+  if(request.GET.get('deletePokemon')):
+    teamName = request.GET.get('teamName')
+    slotIndex = request.GET.get('slotIndex')
+    delete_pokemon_from_team(teamName, slotIndex)
+  
   context = {'teams': teams_list}
   return render(request, 'pokedex/teams.html', context)
  
-def add_to_team(team_name, pok_id):
+def add_to_team(team_name, pok_id, pok_name):
   '''Ajoute un pokémon dans l'équipe en argument'''
   for team in teams_list:
-    print(team['name'])
-    print('got' + team_name)
     if team['name'] == team_name:
       for pokemon in team['pokemons']:
-        print(pokemon)
-        print(pokemon['pokemon_id'])
-        print('got'+str(pok_id))
         if pokemon['pokemon_id'] == 0:
           pokemon['pokemon_id']= pok_id
+          pokemon['name'] = pok_name
           break
       break
   
@@ -133,7 +148,6 @@ def create_team(name):
 
 def delete_team(name):
   '''Supprime l'équipe dont le nom est en argument'''
-  print(name)
   i=0
   team_index =0
   for team in teams_list:
@@ -142,8 +156,18 @@ def delete_team(name):
     i+=1
   teams_list.pop(team_index)
 
-
-
+def delete_pokemon_from_team(teamName, slotIndex):
+  """Supprime un pokémon de l'équipe en argument"""
+  for team in teams_list:
+    if team['name'] == teamName :
+      for pokemon in team['pokemons']:
+        if int(pokemon['id_team']) == int(slotIndex):
+          pokemon['pokemon_id'] = 0
+          pokemon['name'] = ''
+          pokemon['types'] = ""
+          break
+      break
+          
 
 '''Liste des equipes'''
 teams_list = list()

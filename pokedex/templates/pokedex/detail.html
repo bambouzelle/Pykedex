@@ -13,6 +13,24 @@
         </div>
     </div>
     <div class="row">
+        <div class="col text-center">
+
+            {% if teams%}
+            <form action="#" method="get">
+                <select name="teams" id="team-select">
+                            {% for team in teams %}
+                            <option value={{team.name}}>{{team.name}}</option>
+                            {% endfor %} 
+                            <input type="hidden" value={{id}} name="pok_id">
+                            <input type="hidden" value={{name}} name="pok_name">
+                        </select>
+                <input type="submit" class="btn btn-primary" value="Add to team" name="submitToTeam">
+            </form>
+            {% else %}
+            <a href="{% url 'teams' %}" class="btn btn-primary">Create a Team</a> {% endif %}
+        </div>
+    </div>
+    <div class="row">
         <div class="col">
             <div class="container">
                 <div class="row">
@@ -80,14 +98,14 @@
                 {% if previous_id > 0%}
                 <a href="/pokedex/{{previous_id}}/" class="btn btn-primary">Previous</a> {% endif %}
             </div>
-            <div class="col" style="margin-top:4em;">
+            <div class="col" style="margin-top:2em;">
                 <a href="/pokedex/{{next_id}}/" class="btn btn-primary">Next</a>
             </div>
         </div>
     </div>
 
     <div class="row">
-        <div class="col text-center" style="margin-top:4em;">
+        <div class="col text-center" style="margin-top:1em;">
             <a href="/" class="btn btn-primary">Return to Pykedex</a>
         </div>
     </div>

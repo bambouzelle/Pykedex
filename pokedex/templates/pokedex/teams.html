@@ -28,16 +28,21 @@
                 <div class="row">
                     {% for pokemon in team.pokemons %}
                     <div class="col-2 box">
-                        <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.pokemon_id}}.png" alt="">
+                        <div class="card" style="width: 14rem;">
+                            <img class="card-img-top" style='height: 14em;' src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.pokemon_id}}.png" alt="">
                             <div class="card-header text-center">
                                 <p><b>Slot {{pokemon.id_team}}</b></p>
                             </div>
-                            {% if pokemon.pokemon_id > 0 %}
+                            {% if pokemon.pokemon_id %}
                             <div class="card-body">
                                 <p class="card-title">{{pokemon.pokemon_id}} : {{pokemon.name}}</p>
                                 <p class="card-text"></p>
                                 <a href="/pokedex/{{pokemon.pokemon_id}}/" class="btn btn-primary">Details</a>
+                                <form action="#" method="get">
+                                    <input type="hidden" value={{team.name}} name='teamName' />
+                                    <input type="hidden" value={{pokemon.id_team}} name='slotIndex' />
+                                    <input type="submit" class="btn" value="Delete from team" name="deletePokemon">
+                                </form>
                             </div>
                             {% else %}
                             <div class="card-body">
