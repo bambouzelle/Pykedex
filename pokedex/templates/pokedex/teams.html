@@ -36,7 +36,7 @@
                             {% if pokemon.pokemon_id %}
                             <div class="card-body">
                                 <p class="card-title">{{pokemon.pokemon_id}} : {{pokemon.name}}</p>
-                                <p class="card-text"></p>
+                                <p class="card-text">Type : {{pokemon.types}}</p>
                                 <a href="/pokedex/{{pokemon.pokemon_id}}/" class="btn btn-primary">Details</a>
                                 <form action="#" method="get">
                                     <input type="hidden" value={{team.name}} name='teamName' />

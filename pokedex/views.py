@@ -7,8 +7,8 @@ def index(request, page=0):
       offset = 0
       previous = 0
     else:
-      offset = page*20
-    limit = 20
+      offset = page*10
+    limit = 10
     i = 0
     
     #Vérifie s'il y a un ajout a l'équipe
@@ -42,8 +42,11 @@ def index(request, page=0):
         'pokemon_id': all_data['id'],
         'name': all_data['name'],
         'index':i,
-        'teams':teams_list
+        'teams':teams_list,
+        'type': all_data["types"][0]["type"]["name"]
         }
+        if str(pokemon_data['pokemon_id']) not in types:
+          types[str(pokemon_data['pokemon_id'])] = pokemon_data['type']      
         all_results.append(pokemon_data)
       data = all_results
       next = 0
@@ -63,10 +66,14 @@ def index(request, page=0):
         i+=1
         print(pokemon)
         pokemon_id = pokemon['url'].split('/')[-2]
-        url_api_poke = 'https://pokeapi.co/api/v2/pokemon/{}/'.format(str(pokemon_id))
-        response_poke = requests.get(url_api_poke)
-        all_data_poke = response_poke.json()
-        type_poke = all_data_poke["types"][0]["type"]["name"]
+        if pokemon_id not in types:
+          url_api_poke = 'https://pokeapi.co/api/v2/pokemon/{}/'.format(str(pokemon_id))
+          response_poke = requests.get(url_api_poke)
+          all_data_poke = response_poke.json()
+          type_poke = all_data_poke["types"][0]["type"]["name"]
+          types[pokemon_id] = type_poke
+        else:
+          type_poke = types[pokemon_id]
         data.append({'name': pokemon['name'], 'pokemon_id':pokemon_id, 'index':i, 'type': type_poke})
     context = {'pokemon_list': data , 'previous': previous , 'next' :next, 'search':is_search, 'teams':teams_list}
     return render(request, 'pokedex/index.html', context)
@@ -77,8 +84,11 @@ def detail(request, pokemon_id):
      #Vérifie s'il y a un ajout a l'équipe
     if (request.GET.get('submitToTeam')):
       team_name = request.GET.get('teams')
+      print(team_name)
       pok_id = request.GET.get('pok_id')
+      print(pok_id)
       pok_name = request.GET.get('pok_name')
+      print(pok_name)
       add_to_team(team_name, pok_id, pok_name)
       
     url_api ='https://pokeapi.co/api/v2/pokemon/{}/'.format(str(pokemon_id))
@@ -138,6 +148,7 @@ def add_to_team(team_name, pok_id, pok_name):
         if pokemon['pokemon_id'] == 0:
           pokemon['pokemon_id']= pok_id
           pokemon['name'] = pok_name
+          pokemon['types'] = types[pok_id]
           break
       break
   
@@ -186,6 +197,8 @@ def verify_team_name(name):
 '''Liste des equipes'''
 teams_list = list()
 
+'''Dictionnaire des types pour accélérer l'app'''
+types = dict()
 
 '''Dictionnaire des noms pour la recherche'''
 names = dict(A=
