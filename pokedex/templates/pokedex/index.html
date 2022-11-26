@@ -22,7 +22,19 @@
                 <div class="card-body">
                     <h5 class="card-title">{{pokemon.pokemon_id}} : {{pokemon.name}}</h5>
                     <p class="card-text"></p>
-                    <a href="/pokedex/{{pokemon.pokemon_id}}/" class="btn btn-primary">Details</a>
+                    <a href="/pokedex/{{pokemon.pokemon_id}}/" class="btn btn-primary">Details</a>{% if teams%}
+                    <form action="#" method="get">
+                        <select name="teams" id="team-select">
+                            {% for team in teams %}
+                            <option value={{team.name}}>{{team.name}}</option>
+                            {% endfor %} 
+                            <input type="hidden" value={{pokemon.pokemon_id}} name="pok_id">
+                            
+                        </select>
+                        <input type="submit" class="btn btn-primary" value="Add to team" name="submitToTeam">
+                    </form>
+                    {% else %}
+                    <a href="teams" class="btn btn-primary">Create a Team</a> {% endif %}
                 </div>
             </div>
         </div>
@@ -33,16 +45,19 @@
                 <div class="card-body">
                     <h5 class="card-title">{{pokemon.pokemon_id}} : {{pokemon.name}}</h5>
                     <p class="card-text"></p>
-                    <a href="/pokedex/{{pokemon.pokemon_id}}/" class="btn btn-primary">Details</a>
+                    <a href="/pokedex/{{pokemon.pokemon_id}}/" class="btn btn-primary">Details</a> {% if teams%}
                     <form action="#" method="get">
                         <select name="teams" id="team-select">
-                            <option value="">Create new team</option>
                             {% for team in teams %}
-                            <option value="{{team.name}}">{{team.name}}</option>
+                            <option value={{team.name}}>{{team.name}}</option>
                             {% endfor %} 
+                            <input type="hidden" value={{pokemon.pokemon_id}} name="pok_id">
+                
                         </select>
                         <input type="submit" class="btn btn-primary" value="Add to team" name="submitToTeam">
                     </form>
+                    {% else %}
+                    <a href="teams" class="btn btn-primary">Create a Team</a> {% endif %}
                 </div>
             </div>
         </div>

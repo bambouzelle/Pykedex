@@ -26,36 +26,29 @@
             </div>
             <div class="col-11">
                 <div class="row">
-                    {% for pokemon in team.pokemons %} {% if pokemon.name %}
+                    {% for pokemon in team.pokemons %}
                     <div class="col-2 box">
                         <div class="card" style="width: 18rem;">
                             <img class="card-img-top" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.pokemon_id}}.png" alt="">
                             <div class="card-header text-center">
                                 <p><b>Slot {{pokemon.id_team}}</b></p>
                             </div>
+                            {% if pokemon.pokemon_id > 0 %}
                             <div class="card-body">
                                 <p class="card-title">{{pokemon.pokemon_id}} : {{pokemon.name}}</p>
                                 <p class="card-text"></p>
                                 <a href="/pokedex/{{pokemon.pokemon_id}}/" class="btn btn-primary">Details</a>
                             </div>
-                        </div>
-                    </div>
-
-                    {% else %}
-                    <div class="col-2 box">
-                        <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.pokemon_id}}.png" alt="">
-                            <div class="card-header text-center">
-                                <p><b>Slot {{pokemon.id_team}}</b></p>
-                            </div>
+                            {% else %}
                             <div class="card-body">
                                 <p class="card-title">No pokemon</p>
                                 <p class="card-text"></p>
                                 <a href="" class="btn btn-primary">Add pokemon to team</a>
                             </div>
+                            {% endif %}
                         </div>
                     </div>
-                    {% endif %} {% endfor %}
+                    {% endfor %}
                 </div>
             </div>{% endif %}
         </div>

@@ -1,10 +1,8 @@
 from django.shortcuts import render
 import requests
-from django.http import HttpResponse
-import csv
-
 
 def index(request, page=0):
+    '''Génère le rendu de la page index'''
     if page==0:
       offset = 0
       previous = 0
@@ -13,7 +11,13 @@ def index(request, page=0):
     limit = 20
     i = 0
     
-    #Vérifie s'il y a une recherche
+    #Vérifie s'il y a un ajout a l'équipe
+    if (request.GET.get('submitToTeam')):
+      team_name = request.GET.get('teams')
+      pok_id = request.GET.get('pok_id')
+      add_to_team(team_name, pok_id)
+      
+    #Vérifie s'il y a une recherche et génére le retour de la recherche
     if (request.GET.get('search')):
       name = request.GET.get('search')
       
@@ -25,7 +29,6 @@ def index(request, page=0):
         is_search = -1
         context = {'pokemon_list': data , 'previous': previous , 'next' :next, 'search':is_search, 'teams':teams_list}
         return render(request, 'pokedex/index.html', context)
-      
       
       name_list = get_name_searched_list(name)
       all_results = []
@@ -46,7 +49,7 @@ def index(request, page=0):
       previous = -1
       is_search = 1
       
-    #Pas de recherche renvoie l'index
+    #Pas de recherche renvoie l'index par défault
     else:    
       url_api = 'https://pokeapi.co/api/v2/pokemon?offset={}&limit={}'.format(offset,limit)
       response = requests.get(url_api)
@@ -64,6 +67,7 @@ def index(request, page=0):
     return render(request, 'pokedex/index.html', context)
     
 def detail(request, pokemon_id):
+    '''Génére le rendu de la page Details'''
     url_api ='https://pokeapi.co/api/v2/pokemon/{}/'.format(str(pokemon_id))
     response = requests.get(url_api)
     all_data = response.json()
@@ -102,18 +106,33 @@ def teams(request):
   context = {'teams': teams_list}
   return render(request, 'pokedex/teams.html', context)
  
-def add_to_team():
-  pass
+def add_to_team(team_name, pok_id):
+  '''Ajoute un pokémon dans l'équipe en argument'''
+  for team in teams_list:
+    print(team['name'])
+    print('got' + team_name)
+    if team['name'] == team_name:
+      for pokemon in team['pokemons']:
+        print(pokemon)
+        print(pokemon['pokemon_id'])
+        print('got'+str(pok_id))
+        if pokemon['pokemon_id'] == 0:
+          pokemon['pokemon_id']= pok_id
+          break
+      break
+  
 
 def create_team(name):
-  teams_list.append({'name':name, 'pokemons':[{'id_team':1, 'pokemon_id':'', 'name':'', 'types':''},
-                                              {'id_team':2, 'pokemon_id':'', 'name':'', 'types':''},
-                                              {'id_team':3, 'pokemon_id':'', 'name':'', 'types':''},
-                                              {'id_team':4, 'pokemon_id':'', 'name':'', 'types':''},
-                                              {'id_team':5, 'pokemon_id':'', 'name':'', 'types':''},
-                                              {'id_team':6, 'pokemon_id':'',' name':'', 'types':''}]})
+  '''Créer une épique'''
+  teams_list.append({'name':name, 'pokemons':[{'id_team':1, 'pokemon_id':0, 'name':'', 'types':''},
+                                              {'id_team':2, 'pokemon_id':0, 'name':'', 'types':''},
+                                              {'id_team':3, 'pokemon_id':0, 'name':'', 'types':''},
+                                              {'id_team':4, 'pokemon_id':0, 'name':'', 'types':''},
+                                              {'id_team':5, 'pokemon_id':0, 'name':'', 'types':''},
+                                              {'id_team':6, 'pokemon_id':0,' name':'', 'types':''}]})
 
 def delete_team(name):
+  '''Supprime l'équipe dont le nom est en argument'''
   print(name)
   i=0
   team_index =0
@@ -123,7 +142,14 @@ def delete_team(name):
     i+=1
   teams_list.pop(team_index)
 
+
+
+
+'''Liste des equipes'''
 teams_list = list()
+
+
+'''Dictionnaire des noms pour la recherche'''
 names = dict(A=
     ['Abomasnow',
     'Abra',
