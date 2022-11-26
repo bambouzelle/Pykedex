@@ -109,7 +109,8 @@ def teams(request):
   #Vérifie si création d'une nouvelle équipe
   if(request.GET.get('submitNewTeam')):
     name= str(request.GET.get('teamName'))
-    create_team(name)
+    realName = verify_team_name(name)
+    create_team(realName)
   
   #Vérifie si suppression d'équipe
   if(request.GET.get('deleteTeam')):
@@ -168,6 +169,15 @@ def delete_pokemon_from_team(teamName, slotIndex):
           break
       break
           
+def verify_team_name(name):
+    '''vérifie l'unicité du nom pour limité les erreurs'''
+    if name == "":
+      nb_teams = len(teams_list)
+      name = "equipe" + str(nb_teams+1)
+    for team in teams_list:
+      if team['name']== name:
+        name = name + '.1'
+    return name
 
 '''Liste des equipes'''
 teams_list = list()
