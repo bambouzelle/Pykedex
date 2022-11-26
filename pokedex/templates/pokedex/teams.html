@@ -1,0 +1,67 @@
+<rel="stylesheet" href="../static/pokedex/teams.css"> {% include "pokedex/header.html" %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class='col text-center'>
+                <form action="#" method="get">
+                    <input type="text" value="" placeholder="team name" name="teamName" size="25" />
+                    <input type="submit" class="btn" value="Add new team" name="submitNewTeam">
+                </form>
+            </div>
+        </div>
+        {% if teams %} {% for team in teams %}
+        <div class="row">
+            {% if team %}
+            <div class="col-1">
+                <div class="row">
+                    <h3>{{team.name}}</h3>
+                </div>
+                <div class="row">
+                    <form action="#" method="get">
+                        <input type="hidden" value={{team.name}} name='delTeamName' />
+                        <input type="submit" class="btn" value="Delete team" name="deleteTeam">
+                    </form>
+                </div>
+
+            </div>
+            <div class="col-11">
+                <div class="row">
+                    {% for pokemon in team.pokemons %}
+                    <div class="col-2 box">
+                        <div class="card" style="width: 14rem;">
+                            <img class="card-img-top" style='height: 14em;' src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.pokemon_id}}.png" alt="">
+                            <div class="card-header text-center">
+                                <p><b>Slot {{pokemon.id_team}}</b></p>
+                            </div>
+                            {% if pokemon.pokemon_id %}
+                            <div class="card-body">
+                                <p class="card-title">{{pokemon.pokemon_id}} : {{pokemon.name}}</p>
+                                <p class="card-text"></p>
+                                <a href="/pokedex/{{pokemon.pokemon_id}}/" class="btn btn-primary">Details</a>
+                                <form action="#" method="get">
+                                    <input type="hidden" value={{team.name}} name='teamName' />
+                                    <input type="hidden" value={{pokemon.id_team}} name='slotIndex' />
+                                    <input type="submit" class="btn" value="Delete from team" name="deletePokemon">
+                                </form>
+                            </div>
+                            {% else %}
+                            <div class="card-body">
+                                <p class="card-title">No pokemon</p>
+                                <p class="card-text"></p>
+                                <a href="/" class="btn btn-primary">Add pokemon to team</a>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>{% endif %}
+        </div>
+        {% endfor %} {% endif %}
+        <div class="row">
+            <div class="col text-center ">
+
+                <a href="/" class="btn btn-primary">Return to home</a>
+            </div>
+        </div>
+    </div>

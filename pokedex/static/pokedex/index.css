@@ -1,8 +1,9 @@
 li {
     list-style: none;
 }
-.w50{
-    width:50%;
+
+.w50 {
+    width: 50%;
 }
 
 .row {
@@ -23,14 +24,13 @@ li {
     right: 0;
     bottom: 0;
     left: 0;
-    background: linear-gradient(-45deg, #969696 21%, #F8F8F8 199% );
+    background: linear-gradient(-45deg, #969696 21%, #F8F8F8 199%);
     transform: translate3d(20px, 20px, 0) scale(0.89);
     filter: blur(40px);
     opacity: var(0.54);
     transition: opacity 0.3s;
     border-radius: inherit;
 }
-
 
 .couleur:hover {
     bottom: 5px;
@@ -130,6 +130,6 @@ li {
 }
 
 .card {
-  background: white;
-  width:200px
+    background: white;
+    width: 200px;
 }
